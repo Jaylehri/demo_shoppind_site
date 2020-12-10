@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+<strong>Images:</strong>
+ <%if @product.images.attached?%>
+   <% (0...@product.images.count).each do|image| %>
+  <%= image_tag url_for(@product.images[image]) , style:  "width:200px; display:block"%>
+  <%#=link_to @product.images[image].filename, rails_blob_path(@product.images[image], disposition: "attachment") %>
+  <% end %>
+
+  <%end%>
+
+
+<% if has_role?(:seller) %>
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
+<% else %>
+<%= link_to 'Back', products_path %>
+<% end %>

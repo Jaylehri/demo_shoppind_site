@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference: MyString
+  users: MyString
+  price: 1
+  quantity: MyString
+  integer: MyString
+  references: MyString
+  products: MyString
+  cancel_at: MyString
+  date: MyString
+
+two:
+  reference: MyString
+  users: MyString
+  price: 1
+  quantity: MyString
+  integer: MyString
+  references: MyString
+  products: MyString
+  cancel_at: MyString
+  date: MyString
