@@ -7,25 +7,58 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to 'Home', welcome_index_path, class: 'nav-link'%>
+           <%= link_to 'Home', welcome_index_path, class: 'nav-link'%>
         </li>
+           <% if user_signed_in? %>
+       <li class="nav-item">
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+     
+      <% else %>
+       <li class="nav-item">
+        <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
+      </li>
+     
+       <li class="nav-item">
+          <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
+      </li>
+     
+      <% end %>
+         
 
-       <!--  <li class="nav-item">
-        <%= link_to 'Sell',  sellers_seller_path, class: 'nav-link' %>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Cart</a>
+         <li class="nav-item">
+         <%= link_to 'Cart', product_line_items_path, class: 'nav-link'%> 
+          <!-- <a class="nav-link" href="#">Cart</a> -->
         </li>
+        <!-- <li class="nav-item">
+        <%= link_to 'Sell',  sellers_seller_path, class: 'nav-link' %>
        
        <li> -->
          <div class="dropdown">
   <button class="dropbtn">Who You Are</button>
   <div class="dropdown-content">
-  <a>
-    <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
-  </a>
-  <a>
-    <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
-  </a>
+  
+   <% if user_signed_in? %>
+      <% if has_role?(:seller)%>
+        <a>
+
+          <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
+        </a>
+      <% else %>
+          <a>
+            <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
+          </a>
+            <% end %>
+    <% else %>
+       <a>
+          <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
+       </a>
+       <a>
+          <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
+       </a>
+    <% end %>
+
+
   <a href="#">Link 3</a>
   </div>
 </div>

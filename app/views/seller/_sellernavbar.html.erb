@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Sell Product </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,9 +8,9 @@
       
       <% if user_signed_in? %>
 
-         <li class="nav-item">
+         <!-- <li class="nav-item">
           <%= link_to 'Home', welcome_index_path, class: 'nav-link'%>
-        </li>
+        </li> -->
         <li class="nav-item">
           <%= link_to 'Manage Product',products_path, class: 'nav-link'%>
         </li>
@@ -22,10 +22,10 @@
       </li>
      
       <% else %>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
           <%= link_to 'Home', welcome_index_path, class: 'nav-link'%>
         </li>
-
+ -->
        <li class="nav-item">
        	<%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
       </li>

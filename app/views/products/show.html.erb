@@ -23,7 +23,13 @@
 
   <%end%>
 
-
+<% if user_signed_in? %>  
+<h2>add to cart </h2>
+<%= render 'line_items/form' %>
+             <td><%#= link_to 'Add to Cart', new_line_item_path %></td>
+          <% else%>
+             <td> <%= link_to 'Add to Cart', new_user_session_path %></td>
+          <% end %>
 <% if has_role?(:seller) %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

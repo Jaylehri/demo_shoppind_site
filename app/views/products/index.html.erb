@@ -1,5 +1,5 @@
 <h1>Products</h1>
-<% if has_role?(:Seller) %>
+<% if has_role?(:seller) %>
 <%= link_to 'New Product', new_product_path %>
 <% end %>
 <table>
@@ -21,12 +21,16 @@
        
         <% if has_role?(:seller) %>
 
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', product %></td>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Add to Cart', line_items_addtocart_path%></td>
+          <td><%= link_to 'Show', product %></td>
+          <% if user_signed_in? %>  
+             <td><%#= link_to 'Add to Cart', new_line_item_path %></td>
+          <% else%>
+             <td> <%= link_to 'Add to Cart', new_user_session_path %></td>
+          <% end %>
         <% end %>
 
       </tr>
