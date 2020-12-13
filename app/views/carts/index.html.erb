@@ -12,7 +12,11 @@
   <tbody>
     <% @carts.each do |cart| %>
       <tr>
-        <td><%= link_to 'Show', cart %></td>
+        
+ <td><% product.images.each do |image| %>
+            <%= image_tag image ,size: "250x250" ,:class => 'class="card-img-top"'%> 
+          <% end %>
+  </td>        <td><%= link_to 'Show', cart %></td>
         <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
         <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

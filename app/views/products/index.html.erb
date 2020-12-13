@@ -15,6 +15,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
+       
         <td><%= product.title %></td>
         <td><%= product.description %></td>
         <td><%= product.price %></td>
@@ -32,7 +33,6 @@
              <td> <%= link_to 'Add to Cart', new_user_session_path %></td>
           <% end %>
         <% end %>
-
       </tr>
     <% end %>
   </tbody>

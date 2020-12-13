@@ -6,7 +6,7 @@ class CreateLineItems < ActiveRecord::Migration[6.0]
       t.integer	:quantity, default: 1
       t.references :product,foreign_key: true
       t.date :canceled_at 
-      t.belongs_to :cart, foreign_key: true
+      t.references :order, foreign_key: true
 
       t.timestamps
     end

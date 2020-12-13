@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :line_items
   end
   devise_for :users
+
   #post "/line_items/new"
   root 'welcome#index'
   get 'welcome/index'
