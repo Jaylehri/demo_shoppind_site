@@ -33,8 +33,9 @@
   </div>
     <b>Address:</b>
   <ul>
-    <%= f.fields_for :addresses, resource.address do |address_form| %>
+    <%= f.fields_for :address, resource.build_address do |address_form| %>
       <li>
+
         <%= address_form.label :address_1 %>
         <%= address_form.text_field :address_1 %>
 

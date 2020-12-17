@@ -22,16 +22,20 @@
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+        <%= form.label :price %>
+    <%= form.text_field :price %>
   </div>
 
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :images, multiple: true %>
+
       <% if @product.images.attached? %>
-<%= image_tag  @product.images, style: "width:200px; display: block "%>
-      <%end%>
+
+        <% (0...@product.images.count).each do|image| %>
+          <%= image_tag url_for(@product.images[image]) , style:  "width:200px; display:block" , class: "img-fluid img-thumbnail" %>
+       <% end %>       
+      <% end %>
   </div>
 
   <div class="actions">

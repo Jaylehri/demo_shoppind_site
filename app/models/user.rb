@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+  has_one :image
   validates :mobile, length: { minimum: 10, maximum: 10}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,4 +12,18 @@ class User < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_one :address
   accepts_nested_attributes_for :address
+
+
+
+
+
+def latest_order
+    orders.where(status: 'cart').first || new_order
+  end
+  
+  private
+
+  def new_order
+    orders.create(status:'cart')
+  end
 end

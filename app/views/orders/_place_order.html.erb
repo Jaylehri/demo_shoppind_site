@@ -1,0 +1,13 @@
+ 
+ <%= form_with(model: @order, local: true) do |form| %>
+
+  <div class="field">
+    <%=form.radio_button(:payment_mode, 'COD') %>
+    <%= form.label :payment_mode, "COD" %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+  <% end %>
