@@ -16,7 +16,6 @@ class User < ApplicationRecord
 
 
 
-
 def latest_order
     orders.where(status: 'cart').first || new_order
   end

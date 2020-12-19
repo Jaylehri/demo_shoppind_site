@@ -4,7 +4,7 @@ class LineItem < ApplicationRecord
  # before_create :create_order
   #after_create :update_order
   # after_destroy :destroy_order
-  after_create :update_order_line_item
+  # after_create :update_order_line_item
   # before_create :create_order
   belongs_to :product
   belongs_to :user
@@ -16,7 +16,7 @@ class LineItem < ApplicationRecord
   end
 
   def update_line_item 
-     binding.pry
+    #binding.pry
     @total_quantity = LineItem.where(product_id: product.id).sum('quantity')
     @line_item = LineItem.find_by(product_id: product.id)
     # @user = current_user.id
@@ -45,24 +45,26 @@ class LineItem < ApplicationRecord
   # end
 
 
-  def update_order_line_item
+  # def update_order_line_item 
 
-    self.quantity = LineItem.where(product_id: product.id).sum('quantity')
+  #   # @line_item = LineItem.find_by(product_id: product.id)
+  
+  #     self.quantity = LineItem.where(product_id: product.id).sum('quantity')
+  
+  #   #   @line_item = LineItem.find(product_id: product.id)
+  #   #   @quantity = LineItem.where(product_id: product.id).sum('quantity')
+  #   #   @line_item.update(quantity: @quantity)
+  #   # if @line_item.product.id
+  #   #   @line_item.update(quantity: self.quantity)
+  #   # end
+  #   #  @total_quantity = LineItem.where(user_id: @user).sum('quantity')
+  #   #  @order = Order.find_by(user_id: current_user.id)
+  #   #  @user = current_user.id
+  #   #  @total_price =  LineItem.where(user_id: @user).sum('price')
+  #   #  #price = @order.total_price + line_item.price
+  #   #  @order.update(total_price: @total_price, status: 'cart',total_quantity:@total_quantity)
 
-    #   @line_item = LineItem.find(product_id: product.id)
-    #   @quantity = LineItem.where(product_id: product.id).sum('quantity')
-    #   @line_item.update(quantity: @quantity)
-    # if @line_item.product.id
-    #   @line_item.update(quantity: self.quantity)
-    # end
-    #  @total_quantity = LineItem.where(user_id: @user).sum('quantity')
-    #  @order = Order.find_by(user_id: current_user.id)
-    #  @user = current_user.id
-    #  @total_price =  LineItem.where(user_id: @user).sum('price')
-    #  #price = @order.total_price + line_item.price
-    #  @order.update(total_price: @total_price, status: 'cart',total_quantity:@total_quantity)
-
-  end
+  # end
 
   # def create_order
   #   @user = current_user.id

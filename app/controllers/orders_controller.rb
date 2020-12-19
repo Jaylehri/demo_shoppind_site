@@ -1,17 +1,18 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  # before_action :set_order, only: [:show, :edit, :update, :destroy]
   # after_action :destroy_line_items , only: [:index]
-  after_action :update_order, only: [:create]
-  def create 
-   # binding.pry
-    @order = Order.new(order_params)  
-    @order.user_id = current_user.id
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to orders_path, notice: 'Order place successfully created.' }
-      end
-    end
-  end
+  # after_action :update_order, only: [:create]
+  
+  # def create 
+  #  # binding.pry
+  #   @order = Order.new(order_params)  
+  #   @order.user_id = current_user.id
+  #   respond_to do |format|
+  #     if @order.save
+  #       format.html { redirect_to orders_path, notice: 'Order place successfully created.' }
+  #     end
+  #   end
+  # end
 
   
 
@@ -19,6 +20,21 @@ class OrdersController < ApplicationController
     @user = User.find(current_user.id)
     @orders = @user.orders.all
   end
+    
+  def select_payment_mode
+  end
+
+  def place_order
+     @order = Order.new(order_params) 
+    @total_quantity = LineItem.where(user_id: current_user.id).sum('quantity')
+     # @order = Order.find_by(user_id: current_user.id)
+     # @user = current_user.id
+    @total_price =  LineItem.where(user_id: current_user.id).sum('price')
+     #price = @order.total_price + line_item.price
+    current_user.latest_order.update(total_price: @total_price, 
+      status: 'place',total_quantity:@total_quantity, payment_mode: @order.payment_mode)
+    redirect_to orders_path
+ end
 
   # def show
   # end
@@ -71,7 +87,8 @@ class OrdersController < ApplicationController
      # @user = current_user.id
      @total_price =  LineItem.where(user_id: current_user.id).sum('price')
      #price = @order.total_price + line_item.price
-    current_user.latest_order.update(total_price: @total_price, status: 'place',total_quantity:@total_quantity)
+    current_user.latest_order.update(total_price: @total_price, 
+      status: 'place',total_quantity:@total_quantity, payment_mode: @order.payment_mode)
   end
 
   def order_params

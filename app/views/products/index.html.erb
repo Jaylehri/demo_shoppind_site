@@ -25,7 +25,7 @@
 
         <td><%= product.title %></td>
         <td><%= product.description %></td>
-        <td><%= product.price %></td>
+        <td><span>Rs</span> <%= product.price %></td>
        
         <% if has_role?(:seller) %>
 

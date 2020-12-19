@@ -2,18 +2,23 @@ Rails.application.routes.draw do
   
 
   resources :carts
-  get 'orders/place_order'
+    get "/orders/select_payment_mode"
   # post "/line_items"
   resources :orders  do 
-    resources :line_items, except: [:index]
+    resources :line_items, except: [:index, :update]
   end
- 
   resources :line_items, only: [:index]
-  resources :products  
-  devise_for :users
-  # post "/orders/place_order"
-  #post "/line_items/new"
 
+  resources :products  do 
+    resources :line_items, only:[:destroy, :update
+    ]
+  end
+
+  devise_for :users
+  post "/orders/place_order"
+
+
+  # post 'products/product_id/line_items/id'
   root 'welcome#index'
   get 'welcome/index'
   get 'sellers/seller'

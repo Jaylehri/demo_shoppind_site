@@ -2,60 +2,54 @@
 <h1>Line Items</h1>
 
  <table class = "table table-striped table-bordered" >
-  <thead class="table-dark">
-      
+  <thead class="table-dark">    
    <% if user_signed_in? %>
-      <tr>
-    
-     <th>Quantity</th>
-      <th>Price</th>
-      <th></th>
-      <th></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+     <% if current_user.line_items.present? %>
+       <tr>
+         <th>Title</th>
+         <th>Quantity</th>
+         <th>Price</th>
+         <th></th>
+         <th></th>
+         <th></th>
+         <th colspan="3"></th>
+       </tr>
+   </thead>
   <tbody>
-
-
     <% current_user.line_items.each do |line_item| %>
       <tr>
+        <td><%=line_item.product.title %>
         <td><%= line_item.quantity %></td>
-        <td><%= line_item.price %></td>
-        <td><%#= line_item.price %></td>
-        <td><%#= link_to 'Show', [line_item.order, line_item], class: 'btn btn-primary'%></td>
-        <td><%#= link_to 'Edit', edit_product_line_item_path(line_item.product, line_item) %></td>
-        <td><%#= link_to 'Destroy', [line_item.order, line_item] ,method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><span>Rs</span> <%= line_item.price %></td>
+   
+        <%# binding.pry %>
+         <%= form_for([line_item.product, line_item]) do |f| %>
+            <%= f.hidden_field :product_id, value: line_item.product.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :order_id, value: current_user.latest_order.id %>
+            <td><%= f.number_field :quantity, value: line_item.quantity.to_i, min: 1, class: 'form-control',placeholder: 'edit quantity'%></td>
+            <td><%= f.submit "Update Quantity", class: 'btn btn-primary mt-2' %><td>
+            <td><%= link_to 'Destroy', [line_item.product, line_item] ,method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          <% end %>
       </tr>
     <% end %>
     <% else %>
-    <%= render plain: 'Empty cart'%>
+      <%= render plain: 'Empty cart'%>
+    <% end %>
+    <% else %>
+      <%= render plain: 'Empty cart'%>
     <% end %>
 
 
   </tbody>
 </table>
-
 <br>
 <% if user_signed_in?%>
 
-<% if current_user.line_items.present? %>
-<h4>Select payment mode</h4>
-
-  <%= form_for(:order, url: orders_path , local: true) do |form| %>
-
-  <div class="field">
-    <%=form.radio_button(:payment_mode, 'COD') %>
-    <%= form.label :payment_mode, "COD" %>
-  </div>
-  
-  <div class="actions">
-    <%= form.submit 'Place order' %>
-  </div>
-
+    <% if current_user.line_items.present? %>
+      <%= link_to 'Process to Buy', orders_select_payment_mode_path, class: 'btn btn-warning'%>
   <% end %>
-  <% end %>
-  <% end %>
+<% end %>
 
 <%#= link_to 'Order Place', orders_path , class: 'btn btn-danger'%>
 
