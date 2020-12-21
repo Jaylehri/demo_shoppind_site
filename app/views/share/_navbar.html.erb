@@ -1,9 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd";>
   <div class="container-fluid">
-
-<!--     <a class="navbar-brand" href="#">Shopping Site</a> -->
-
-      <%= link_to 'Shopping Site', products_path, class: 'navbar-brand'%>
+    <%= link_to 'Shopping Site', products_path, class: 'navbar-brand'%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,65 +10,58 @@
            <%= link_to 'Home', products_path, class: 'nav-link'%>
         </li>
            <% if user_signed_in? %>
-       <li class="nav-item">
-          <%= link_to "Sign out(#{current_user.name})", destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      </li>
-     
-        <li class="nav-item">
-        <%= link_to 'Orders',  orders_path, class: 'nav-link' %>
-       
-       <li> 
-        <%= link_to "Cart(#{current_user.line_items.size})", line_items_path, class: 'nav-link' %>  
-      </li>
-
-      <% else %>
-       <li class="nav-item">
-        <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
-      </li>
-     
-       <li class="nav-item">
-          <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
-      </li>
-       
-       <li class="nav-item">
-        <%#binding.pry %>
-          
-        <%= link_to "Cart", line_items_path, class: 'nav-link' %>  
-          <!-- <a class="nav-link" href="#">Cart</a>  -->
-        </li> 
- 
-      <% end %>
-      
-
-         <div class="dropdown">
-  <button class="dropbtn">Who You Are</button>
-  <div class="dropdown-content">
-  
-   <% if user_signed_in? %>
-      <% if has_role?(:seller)%>
-        <a>
-
-          <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
-        </a>
-      <% else %>
-          <a>
-            <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
-          </a>
+         <li class="nav-item">
+            <%= link_to "Sign out(#{current_user.name})", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+          <li class="nav-item">
+          <%= link_to 'Orders',  orders_path, class: 'nav-link' %>
+         <li> 
+          <%= link_to "Cart(#{current_user.line_items.size})", line_items_path, class: 'nav-link' %>  
+        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+              <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
+          </li>       
+          <li class="nav-item">  
+             <%= link_to "Cart", line_items_path, class: 'nav-link' %>  
+          </li>
+        <% end %>
+        <%= form_tag(search_page_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+          <div class="input-group">  
+            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+            <div class="input-group-btn">  
+              <%= button_tag "Search", :class => 'btn btn-primary glyphicon glyphicon-search',:name => nil%>  
+            </div> 
+          </div>  
+        <% end %>
+        <div class="dropdown">
+          <button class="dropbtn">Who You Are</button>
+          <div class="dropdown-content">
+           <% if user_signed_in? %>
+              <% if has_role?(:seller)%>
+                <a>
+                  <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
+                </a>
+              <% else %>
+                <a>
+                  <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
+                </a>
+              <% end %>
+            <% else %>
+               <a>
+                  <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
+               </a>
+               <a>
+                  <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
+               </a>
             <% end %>
-    <% else %>
-       <a>
-          <%= link_to 'Buyer',  products_path, class: 'nav-link' %>
-       </a>
-       <a>
-          <%= link_to 'Seller',  sellers_seller_path, class: 'nav-link' %>
-       </a>
-    <% end %>
-
-  </div>
-</div>
-       </li>
+          </div>
+        </div>
+        </li>
       </ul>
-
     </div>
   </div>
 </nav> 

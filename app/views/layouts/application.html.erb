@@ -13,10 +13,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body> 
+   <div class="card text-white bg-secondary mb-3">
     <%= render 'share/navbar'%>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+ </div>
   </body>
 
 </html>

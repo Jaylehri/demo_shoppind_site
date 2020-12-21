@@ -1,8 +1,8 @@
 <%= render 'seller/sellernavbar'%>
 
 <% if user_signed_in? %>
-<h1><%= current_user.email %></h1>
-<h1>You Have Login  Succesfully as a Seller</h1>
+  <h1><%= current_user.email %></h1>
+  <h1>You Have Login  Succesfully as a Seller</h1>
 <% else%>
-<h1>Please Login </h1>
+  <h1>Please Login </h1>
 <% end %>
