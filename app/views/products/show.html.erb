@@ -28,8 +28,7 @@
      <li> <%= link_to 'Add to Cart', new_user_session_path, class: 'btn btn-primary'%></li>
 <% end %>
 <% if has_role?(:seller) %>
-  <li><%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning' %> |
-  <%= link_to 'Back', products_path, class: 'btn btn-primary' %></li>
+  <li><%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning' %> | <%= link_to 'Back', products_path, class: 'btn btn-primary' %></li>
 <% else %>
-  <%= link_to 'Back', products_path, class: 'btn btn-primary'%>
+  <li><%= link_to 'Back', products_path, class: 'btn btn-primary'%></li>
 <% end %>
