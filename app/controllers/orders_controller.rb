@@ -17,9 +17,10 @@ class OrdersController < ApplicationController
     redirect_to orders_path
  end
  
- def total_revanue
-    @sold_product_total_quantity = Order.sum('total_quantity')
-    @sold_product_total_price =  Order.sum('total_price')
+ def total_revanue 
+  
+    @sold_product_total_quantity = Order.joins(line_items: :product).where("products.user_id = ? ", current_user.id).where(status:'payment').sum("line_items.quantity")
+    @sold_product_total_price =  Order.joins(line_items: :product).where("products.user_id = ? ", current_user.id).where(status:'payment').sum("products.price*quantity")
   end
 
 
