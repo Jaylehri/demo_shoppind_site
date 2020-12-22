@@ -17,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title">Title: <%= product.title %></h5>
             <h5 class="card-title">Price: <%= product.price %></h5>
-            <% if has_role?(:seller)%>
+            <% if has_role?(:seller) %>
               <a> <%= link_to 'Show', product, class: 'btn btn-info' %></a>
               <a><%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning' %></a>
               <a> <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></a>
