@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   rolify
   has_one :image
+  has_many :products, dependent: :destroy
   validates :mobile, length: { minimum: 10, maximum: 10}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -14,7 +15,7 @@ class User < ApplicationRecord
   def latest_order
     orders.where(status: 'cart').first || new_order
   end
-  
+   
   private
 
   def new_order
