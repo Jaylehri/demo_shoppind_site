@@ -8,7 +8,7 @@
                 <% (product.images.count-1...product.images.count).each do|image| %>
                   <%= image_tag url_for(product.images[image]) , style:  "width:200px; display:block" , class: "img-fluid img-thumbnail" %>
                 <% end %>
-           ==<%end%>
+              <%end%>
             <div class="card-body">
               <h5 class="card-title"><%= product.title %></h5>
               <p class="card-text"><%= product.description %></p>
