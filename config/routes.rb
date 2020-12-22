@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :carts
+  devise_for :users 
   get 'orders/total_revanue'
   get "/orders/select_payment_mode"
   resources :orders  do 
@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :products do
     resources :line_items, only: [:destroy, :update]
   end
-  devise_for :users
   post "/orders/place_order"
   # post 'products/product_id/line_items/id'
   root 'products#index'
