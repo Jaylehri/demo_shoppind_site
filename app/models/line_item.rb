@@ -1,10 +1,12 @@
 class LineItem < ApplicationRecord
   before_create :set_price
+  before_update :set_price
   belongs_to :product
   belongs_to :user
   belongs_to :order
 
   def set_price
+
     self.price = product.price*quantity
   end
 
