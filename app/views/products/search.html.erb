@@ -5,10 +5,10 @@
         <div class="col-md-3">
           <div class="card text-white bg-dark mb-3" >
              <% if product.images.attached? %>
-            <% (product.images.count-1...product.images.count).each do|image| %>
-              <%= image_tag url_for(product.images[image]) , style:  "width:200px; display:block" , class: "img-fluid img-thumbnail" %>
-            <% end %>
-         <%end%>
+                <% (product.images.count-1...product.images.count).each do|image| %>
+                  <%= image_tag url_for(product.images[image]) , style:  "width:200px; display:block" , class: "img-fluid img-thumbnail" %>
+                <% end %>
+           ==<%end%>
             <div class="card-body">
               <h5 class="card-title"><%= product.title %></h5>
               <p class="card-text"><%= product.description %></p>
@@ -21,7 +21,7 @@
                 data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-warning'  %>
               <% end %></p>
               <p>
-                <% if user_signed_in? && current_user.has_role?(:buyer) %> 
+                <% if user_signed_in? %> 
                   <%= form_for(:line_item, url: order_line_items_path(current_user.latest_order), local: true ) do |form| %>
                   <%= form.hidden_field :product_id, value: product.id %>
                   <td> 
