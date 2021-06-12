@@ -1,6 +1,8 @@
 <%#= render 'share/navbar'%>
 <h1>shopping site</h1>
-
+<%# <%= form_tag id: "billing-create-payment-method" do  %>
+    
+<%= link_to "Let's go", add_payment_method_path, remote: true, class: "btn btn-primary" %>
 <%# if user_signed_in? 
 <h1><%= current_user.email </h1>
 <%= link_to 'Seller Site' ,controller:'products'

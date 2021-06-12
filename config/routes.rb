@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :carts
-  
+  get '/card/new' => 'welcome#new_card', as: :add_payment_method
   resources :products do
     resources :line_items
   end
